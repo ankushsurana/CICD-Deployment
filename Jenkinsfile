@@ -6,7 +6,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'develop',
-                    url: 'YOUR_GIT_REPOSITORY_URL'
+                    url: 'https://github.com/ankushsurana/CICD-Deployment.git'
             }
         }
 
