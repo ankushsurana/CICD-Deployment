@@ -2,22 +2,19 @@ pipeline {
     agent any
 
     stages {
-
-        stage('Checkout') {
+        stage('Pull Git Content') {
             steps {
-                git branch: 'develop',
-                    url: 'https://github.com/ankushsurana/CICD-Deployment.git'
+                dir('git-content') {
+                    git branch: 'develop',
+                        url: 'https://github.com/ankushsurana/CICD-Deployment.git'
+                }
+                echo 'Git content pulled successfully.'
             }
         }
 
-        stage('Pull Git Content') {
+        stage('Verify') {
             steps {
-                sh '''
-                    mkdir -p git-content
-                    cp -r * git-content/
-                    echo "Git content pulled successfully."
-                    ls -la git-content
-                '''
+                sh 'ls -la git-content'
             }
         }
     }
